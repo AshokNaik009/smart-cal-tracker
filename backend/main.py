@@ -345,6 +345,10 @@ async def export_pdf(meal_plan_data: dict):
     except Exception as e:
         return {"error": f"Failed to generate PDF: {str(e)}"}
 
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "smart-calorie-counter-api"}
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))

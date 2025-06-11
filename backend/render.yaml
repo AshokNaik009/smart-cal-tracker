@@ -11,3 +11,10 @@ services:
         sync: false
       - key: PYTHONPATH
         value: /opt/render/project/src
+
+  - type: cron
+    name: keep-alive-job
+    runtime: python3
+    schedule: "*/7 * * * *"
+    buildCommand: pip install requests
+    startCommand: python -c "import requests; requests.get('https://smart-calorie-counter-api.onrender.com/health')"
